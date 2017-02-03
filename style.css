@@ -1,0 +1,12 @@
+table, td, th {
+    border: 1px solid #dcdcdc;
+    border-collapse: collapse;
+    text-align: center;
+    padding: .5em 1em;
+    color: #303030;
+}
+
+th {
+    font-size: 1.5em;
+    text-transform: capitalize;
+}
