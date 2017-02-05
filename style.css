@@ -1,12 +1,54 @@
-table, td, th {
-    border: 1px solid #dcdcdc;
-    border-collapse: collapse;
-    text-align: center;
-    padding: .5em 1em;
-    color: #303030;
+li {
+	list-style-type: none;
 }
 
-th {
-    font-size: 1.5em;
-    text-transform: capitalize;
+ul ul li {
+	display: inline-block;
+	padding: 15px;
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	width: 150px;
+}
+
+#content ul ul li:last-child {
+	text-align: center;
+	padding: 0;
+	border: none;
+}
+
+#content ul ul li:nth-last-child(2),
+#details ul li:last-child {
+	border-right: none;
+}
+
+#content ul li:last-child li,
+#details ul li:last-child li {
+	border-bottom: none;
+}
+
+button {
+	border: none;
+	height: 100%;
+	padding: 1em;
+}
+
+#content ul ul.header li,
+#details ul ul.header li {
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	padding: 15px;
+	width: 150px;
+	text-align: center;
+	text-transform: capitalize;
+	font-size: 1.25em;
+	font-weight: 700;
+}
+
+#content ul ul.header li:last-child,
+#details ul ul.header li:last-child {
+	border-right: none;
+}
+
+#details {
+	background-color: #CDF4F0;
 }
