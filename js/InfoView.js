@@ -2,16 +2,16 @@
 
 function InfoView (fieldsToShow) {
     this.showInfo = function (thisStudent) {
-        var list, studentUl,
-            header, field, studentRow,
+        var list, studentUl, header, 
+            studentView,
             oldInfo;
 
         list = document.createElement('ul');
         header = makeHeader(fieldsToShow);
         list.appendChild(header);
 
-        studentRow = new ListItemView();
-        studentUl = studentRow.showListItem(thisStudent, fieldsToShow);
+        studentView = new ListItemView();
+        studentUl = studentView.makeListItem(thisStudent, fieldsToShow);
         list.appendChild(studentUl);
 
         oldInfo = document.getElementById('details');

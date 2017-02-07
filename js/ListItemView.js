@@ -1,7 +1,7 @@
 'use strict';
 
 function ListItemView () {
-    this.showListItem = function (listItem, fieldsToShow) {
+    this.makeListItem = function (listItem, fieldsToShow) {
         var ul = document.createElement('ul'),
             li;
         

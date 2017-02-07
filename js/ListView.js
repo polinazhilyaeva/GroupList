@@ -5,7 +5,7 @@ function ListView (group, fullFormArray, shortFormArray) {
 
     this.makeList = function () {
         var resultList, resultLi, studentUl, studentLi, header, button,
-            info, studentRow;
+            info, studentView;
 
         resultList = document.createElement('ul');
         header = makeHeader(shortFormArray);
@@ -14,8 +14,8 @@ function ListView (group, fullFormArray, shortFormArray) {
         studentList.forEach(function (student) {
             resultLi = document.createElement('li');
 
-            studentRow = new ListItemView();
-            studentUl = studentRow.showListItem(student, shortFormArray);
+            studentView = new ListItemView();
+            studentUl = studentView.makeListItem(student, shortFormArray);
             studentLi = document.createElement('li');
             button = document.createElement('button');
             button.innerHTML = 'View Details';
