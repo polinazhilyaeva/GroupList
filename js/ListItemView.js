@@ -3,13 +3,13 @@
 function ListItemView () {
     this.makeListItem = function (listItem, fieldsToShow) {
         var ul = document.createElement('ul'),
-            li;
+            html = '';
         
         fieldsToShow.forEach(function(field) {
-            li = document.createElement('li');
-            li.innerHTML = listItem[field];
-            ul.appendChild(li);
+            html += '<li>' + listItem[field] + '</li>';
         });
+
+        ul.innerHTML = html;
 
         return ul;
     }

@@ -7,7 +7,7 @@ function StudentList () {
         studentList.push(student);
     }
 
-    this.getStudentList = function () {
+    this.getList = function () {
         return studentList;
     }
 

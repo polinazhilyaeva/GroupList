@@ -1,26 +1,34 @@
 'use strict';
 
-function InfoView (fieldsToShow) {
-    this.showInfo = function (thisStudent) {
-        var list, studentUl, header, 
-            studentView,
-            oldInfo;
+function InfoView () {
+    this.showInfo = function (thisItem, fieldsToShow, detailsID) {
+        var list = document.createElement('ul'),
+            header = makeHeader(fieldsToShow),
+            listItem, itemView, details;
 
-        list = document.createElement('ul');
-        header = makeHeader(fieldsToShow);
-        list.appendChild(header);
+        list.innerHTML = header;
 
-        studentView = new ListItemView();
-        studentUl = studentView.makeListItem(thisStudent, fieldsToShow);
-        list.appendChild(studentUl);
+        itemView = new ListItemView();
+        listItem = itemView.makeListItem(thisItem, fieldsToShow);
+        list.appendChild(listItem);
 
-        oldInfo = document.getElementById('details');
+        details = document.getElementById(detailsID);
 
-        while (oldInfo.firstChild) {
-            oldInfo.removeChild(oldInfo.firstChild);
+        while (details.firstChild) {
+            details.removeChild(details.firstChild);
         }
 
-        document.getElementById('details').appendChild(list);
+        details.appendChild(list);
+    }
+
+    function makeHeader (fieldsToShow) {
+        var headerUl = '<ul class="header">';
+
+        fieldsToShow.forEach(function(field) {
+            headerUl += '<li>' + field + '</li>';
+        });
+
+        return headerUl;
     }
 
     return this;    
