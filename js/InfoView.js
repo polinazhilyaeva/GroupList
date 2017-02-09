@@ -1,34 +1,43 @@
 'use strict';
 
 function InfoView () {
-    this.showInfo = function (thisItem, fieldsToShow, detailsID) {
-        var list = document.createElement('ul'),
-            header = makeHeader(fieldsToShow),
-            listItem, itemView, details;
+    this.showInfo = function (thisItem, detailsContainerID) {
+        var detailsContainer = document.getElementById(detailsContainerID),
+            header = makeHeader(thisItem),
+            itemView = new ListItemView(), 
+            info = itemView.makeItem(thisItem);
 
-        list.innerHTML = header;
-
-        itemView = new ListItemView();
-        listItem = itemView.makeListItem(thisItem, fieldsToShow);
-        list.appendChild(listItem);
-
-        details = document.getElementById(detailsID);
-
-        while (details.firstChild) {
-            details.removeChild(details.firstChild);
-        }
-
-        details.appendChild(list);
+        detailsContainer.innerHTML = header + info;
     }
 
-    function makeHeader (fieldsToShow) {
-        var headerUl = '<ul class="header">';
+    this.addButtons = function (list, fullFormArray, listContainer, detailsContainerID) {
+        var rows = listContainer.getElementsByClassName('data-row'),
+            eventListener = this.showInfo.bind(this);
 
-        fieldsToShow.forEach(function(field) {
-            headerUl += '<li>' + field + '</li>';
+        [].forEach.call(rows, function(row, i) {
+            var button = document.createElement('button');
+
+            button.innerHTML = 'View Details';
+            button.addEventListener('click', function () {
+                var item = list[i].getFullForm(fullFormArray);
+
+                return eventListener(item, detailsContainerID);
+            }, false);
+
+            row.appendChild(button);
         });
+    }
 
-        return headerUl;
+    function makeHeader (listItem) {
+        var html = '<header>';
+
+        for (let field in listItem) {
+            html += '<span>' + field + '</span>';
+        };
+
+        html += '</header>';
+
+        return html;
     }
 
     return this;    

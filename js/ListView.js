@@ -1,48 +1,49 @@
 'use strict';
 
 function ListView () {
-    var studentList = [];
+    var list = [];
 
     this.setList = function (listObject) {
-        studentList = listObject.getList();
+        list = listObject.getList();
     }
 
-    this.showList = function (destinationID, detailsID, fullFormArray, shortFormArray) {
-        var resultList = document.createElement('ul'),
-            header = makeHeader(shortFormArray);
+    this.showList = function (destinationID, fullFormArray, shortFormArray) {
+        var container = document.getElementById(destinationID),
+            header = makeHeader(shortFormArray),
+            html = header + '<ul>';        
 
-        resultList.innerHTML = header;
+        list.forEach(function (listItem) {
+            var itemView = new ListItemView(),
+                shortForm = listItem.getShortForm(shortFormArray),
+                row = itemView.makeItem(shortForm);
 
-        studentList.forEach(function (student) {
-            var resultListLi = document.createElement('li'),
-                button = document.createElement('button'),
-                studentView = new ListItemView(),
-                info = new InfoView(),
-                studentRow;
-
-            studentRow = studentView.makeListItem(student, shortFormArray);
-
-            button.innerHTML = 'View Details';
-            button.addEventListener('click', function () {
-                info.showInfo(student, fullFormArray, detailsID);
-            }, false);
-
-            studentRow.appendChild(button);
-            resultListLi.appendChild(studentRow);
-            resultList.appendChild(resultListLi);
+            html += '<li class="data-row">' + row + '</li>';
         });
 
-        document.getElementById(destinationID).appendChild(resultList);
+        html += '</ul>';
+
+        container.innerHTML = html;
+    }
+
+    this.enableDetails = function (fullFormArray, listContainerID, detailsContainerID) {    
+        document.addEventListener('DOMContentLoaded', function () {
+            var info = new InfoView(),
+                listContainer = document.getElementById(listContainerID);
+
+            info.addButtons(list, fullFormArray, listContainer, detailsContainerID);
+        }, false);
     }
 
     function makeHeader (fieldsToShow) {
-        var headerUl = '<ul class="header">';
+        var html = '<header>';
 
         fieldsToShow.forEach(function(field) {
-            headerUl += '<li>' + field + '</li>';
+            html += '<span>' + field + '</span>';
         });
 
-        return headerUl;
+        html += '</header>';
+
+        return html;
     }
 
     return this;

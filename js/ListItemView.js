@@ -1,17 +1,14 @@
 'use strict';
 
 function ListItemView () {
-    this.makeListItem = function (listItem, fieldsToShow) {
-        var ul = document.createElement('ul'),
-            html = '';
+    this.makeItem = function (listItem) {
+        var html = '';
         
-        fieldsToShow.forEach(function(field) {
-            html += '<li>' + listItem[field] + '</li>';
-        });
+        for (let field in listItem) {
+            html += '<span>' + listItem[field] + '</span>';
+        };
 
-        ul.innerHTML = html;
-
-        return ul;
+        return html;
     }
 
     return this;

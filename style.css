@@ -1,29 +1,62 @@
-li {
+body {
+	padding: 2em;
+}
+
+body,
+#content,
+#details {
+	font-size: 16px;
+}
+
+#content ul li {
 	list-style-type: none;
 }
 
-ul ul li {
-	display: inline-block;
-	padding: 15px;
-	border-right: 1px solid #dcdcdc;
-	border-bottom: 1px solid #dcdcdc;
-	width: 150px;
-}
-
-#content ul ul li:last-child {
-	text-align: center;
-	padding: 0;
-	border: none;
-}
-
-#content ul ul li:nth-last-child(2),
-#details ul li:last-child {
+#content ul li span:last-of-type {
 	border-right: none;
 }
 
-#content ul li:last-child li,
-#details ul li:last-child li {
-	border-bottom: none;
+#content ul li span,
+#details span {
+	display: inline-block;
+	padding: 16px;
+	border-right: 1px solid #dcdcdc;
+	border-bottom: 1px solid #dcdcdc;
+	width: 200px;
+	box-sizing: border-box;
+}
+
+#details header span,
+#content header span {
+	text-align: center;
+	text-transform: capitalize;
+	display: inline-block;
+	padding: 16px;
+	border: 1px solid #dcdcdc;
+	border-left: none;
+	width: 200px;
+	box-sizing: border-box;
+	background-color: #468780;
+	color: #fff;
+}
+
+header {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+
+header span:first-child {
+	border-left: 1px solid #dcdcdc;
+}
+
+#content ul {
+	padding: 0;
+	margin: 0;
+}
+
+#details span,
+button {
+	background-color: #CDF4F0;
 }
 
 button {
@@ -32,23 +65,6 @@ button {
 	padding: 1em;
 }
 
-#content ul ul.header li,
-#details ul ul.header li {
-	border-right: 1px solid #dcdcdc;
-	border-bottom: 1px solid #dcdcdc;
-	padding: 15px;
-	width: 150px;
-	text-align: center;
-	text-transform: capitalize;
-	font-size: 1.25em;
-	font-weight: 700;
-}
-
-#content ul ul.header li:last-child,
-#details ul ul.header li:last-child {
-	border-right: none;
-}
-
-#details {
-	background-color: #CDF4F0;
+button:focus {
+	outline-color: #468780;
 }
