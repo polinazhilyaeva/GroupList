@@ -1,70 +1,70 @@
 body {
-	padding: 2em;
+    padding: 2em;
 }
 
 body,
 #content,
 #details {
-	font-size: 16px;
+    font-size: 16px;
 }
 
 #content ul li {
-	list-style-type: none;
+    list-style-type: none;
 }
 
 #content ul li span:last-of-type {
-	border-right: none;
+    border-right: none;
 }
 
 #content ul li span,
 #details span {
-	display: inline-block;
-	padding: 16px;
-	border-right: 1px solid #dcdcdc;
-	border-bottom: 1px solid #dcdcdc;
-	width: 200px;
-	box-sizing: border-box;
+    display: inline-block;
+    padding: 16px;
+    border-right: 1px solid #dcdcdc;
+    border-bottom: 1px solid #dcdcdc;
+    width: 200px;
+    box-sizing: border-box;
 }
 
 #details header span,
 #content header span {
-	text-align: center;
-	text-transform: capitalize;
-	display: inline-block;
-	padding: 16px;
-	border: 1px solid #dcdcdc;
-	border-left: none;
-	width: 200px;
-	box-sizing: border-box;
-	background-color: #468780;
-	color: #fff;
+    text-align: center;
+    text-transform: capitalize;
+    display: inline-block;
+    padding: 16px;
+    border: 1px solid #dcdcdc;
+    border-left: none;
+    width: 200px;
+    box-sizing: border-box;
+    background-color: #468780;
+    color: #fff;
 }
 
 header {
-	font-size: 1.5em;
-	font-weight: 700;
+    font-size: 1.5em;
+    font-weight: 700;
 }
 
 header span:first-child {
-	border-left: 1px solid #dcdcdc;
+    border-left: 1px solid #dcdcdc;
 }
 
 #content ul {
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 
 #details span,
 button {
-	background-color: #CDF4F0;
+    background-color: #CDF4F0;
 }
 
 button {
-	border: none;
-	height: 100%;
-	padding: 1em;
+    border: none;
+    height: 100%;
+    padding: 1em;
 }
 
 button:focus {
-	outline-color: #468780;
+    outline-color: #468780;
 }
