@@ -1,0 +1,22 @@
+.data-row,
+.header {
+    display: flex;
+}
+
+.header span {
+    text-align: center;
+    background-color: #468780;
+    color: #fff;
+    font-size: 1.5em;
+}
+
+.header span {
+    width: 180px;
+    box-sizing: border-box;
+    padding: .75em 1em;
+    border: 1px solid #dcdcdc;
+}
+
+.header span {
+    border-color: #fff;
+}

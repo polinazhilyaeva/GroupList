@@ -1,0 +1,18 @@
+.field {
+    width: 180px;
+    box-sizing: border-box;
+    padding: .75em 1em;
+    border: 1px solid #dcdcdc;
+}
+
+.details-button {
+    background-color: #CDF4F0;
+    border: none;
+    height: 100%;
+    padding: 1em;
+    width: 150px;
+}
+
+.details-button:focus {
+    outline-color: #468780;
+}
