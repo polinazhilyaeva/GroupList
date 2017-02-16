@@ -5,14 +5,32 @@
     border: 1px solid #dcdcdc;
 }
 
-.details-button {
-    background-color: #CDF4F0;
+.details-button,
+.edit-button {
     border: none;
+    margin: 1px;
     height: 100%;
     padding: 1em;
-    width: 150px;
+    width: 70px;
+}
+
+.details-button {
+    background-color: #54AFA5;
+    color: #fff;
+}
+
+.edit-button {
+    background-color: #CDF4F0;
+    color: #468780;
 }
 
 .details-button:focus {
     outline-color: #468780;
+    background-color: #468780;
+}
+
+.edit-button:focus {
+    outline-color: #54AFA5;
+    background-color: #54AFA5;
+    color: #fff;
 }

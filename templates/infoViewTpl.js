@@ -4,4 +4,8 @@ var infoViewTpl = `<div class="details-box">
 <p><strong>Last Name: </strong><span>:lastName</span></p>
 <p><strong>Gender: </strong><span>:gender</span></p>
 <p><strong>Age: </strong><span>:age</span></p>
-<p><strong>Skype: </strong><span>:skype</span></p><div>`;
+<p><strong>Skype: </strong><span>:skype</span></p>
+<p><strong>Email: </strong><span>:email</span></p>
+<p><strong>Phone: </strong><span>:phone</span></p>
+<button class="close-button">Close</button>
+<div>`;

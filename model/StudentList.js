@@ -5,11 +5,12 @@ function StudentList () {
 
     this.addStudent = function (student) {
         studentList.push(student);
+        student.setListLink(studentList);
     };
 
-    this.getList = function () {
-        return studentList;
-    };
+    this.forEach = function (fn) {
+        studentList.forEach(fn);
+    }
 
     return this;
 }

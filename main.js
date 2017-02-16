@@ -1,14 +1,13 @@
 'use strict';
 
 var students = new StudentList(),
-    listView = new ListView();
+    listView = new ListView(students);
 
 document.addEventListener('DOMContentLoaded', function () {
     listView.showList();
 }, false);
 
 studentListInit(students);
-listView.setList(students);
 
 function studentListInit (studentList) {
     var student = {};

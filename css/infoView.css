@@ -1,8 +1,26 @@
 .details-box {
     padding: 1em 2em;
     border: 1px solid #468780;
+    min-width: 220px;
+    margin-left: 1em;
 }
 
 .details-box h2 {
     color: #468780;
+    text-align: center;
+}
+
+.details-box .close-button {
+    display: block;
+    border: none;
+    margin: 27px auto 5px;
+    height: 100%;
+    padding: 1em;
+    width: 110px;
+    background-color: #650E1C;
+    color: #fff;
+}
+
+.details-box .close-button:focus {
+    outline-color: #650E1C;
 }

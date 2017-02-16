@@ -1,16 +1,21 @@
 'use strict';
 
-function InfoView () {
-    this.showInfo = function (json) {
-        var detailsContainer = document.getElementById('details'),
-            details = templater(infoViewTpl, json),
-            detailsBox;
+function InfoView (_listItem) {
+    var listItem = _listItem,
+        detailsContainer = document.getElementById('details');
 
-        detailsContainer.innerHTML = details;
-        detailsBox = detailsContainer.getElementsByClassName('details-box')[0];
-        
-        detailsBox.addEventListener('click', function () {
-            detailsContainer.innerHTML = '';
-        }, false);
+    this.showInfoBox = function () {
+        var json = listItem.toJSON(),
+            html = templater(infoViewTpl, json),
+            closeButton;
+
+        detailsContainer.innerHTML = html;
+
+        closeButton = detailsContainer.getElementsByClassName('close-button')[0];
+        closeButton.addEventListener('click', clearDetails, false);
     };
+
+    function clearDetails () {
+        detailsContainer.innerHTML = '';
+    }
 }

@@ -1,24 +1,35 @@
 'use strict';
 
-function ListItemView () {
-    this.makeItem = function (student) {
+function ListItemView (_student) {
+    var student = _student;
+
+    this.makeItem = function () {
         var item = document.createElement('li'),
             json = student.toJSON(),
             html = templater(listItemViewTpl, json),
-            button;
+            buttonView, buttonEdit;
 
         item.innerHTML = html;
         item.className += 'data-row';
 
-        button = item.getElementsByTagName('button')[0];
+        buttonView = item.getElementsByClassName('details-button')[0];
+        buttonEdit = item.getElementsByClassName('edit-button')[0];
 
-        button.addEventListener('click', function () {
-            var thisJson = json,
-                infoView = new InfoView();
-
-            infoView.showInfo(thisJson);
-        }, false);
+        buttonView.addEventListener('click', showInfo, false);
+        buttonEdit.addEventListener('click', showEdit, false);
 
         return item;
+    }
+
+    function showInfo () {
+        var infoView = new InfoView(student);
+
+        infoView.showInfoBox();
+    }
+
+    function showEdit () {
+        var editView = new EditView(student);
+
+        editView.showEditBox();
     }
 }

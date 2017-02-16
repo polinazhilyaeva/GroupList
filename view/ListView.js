@@ -1,26 +1,21 @@
 'use strict';
 
-function ListView () {
-    var list = [];
-
-    this.setList = function (listObject) {
-        list = listObject.getList();
-    };
+function ListView (studentList) {
+    var students = studentList;
 
     this.showList = function () {
         var container = document.getElementById('content'),
-            ul = document.createElement('ul');    
+            domList;    
 
         container.innerHTML = listViewTpl;
+        domList = container.getElementsByTagName('ul')[0];
 
-        list.forEach(function(listItem) {
-            var listItemView = new ListItemView(),
-                li = listItemView.makeItem(listItem);
+        students.forEach(function(listItem) {
+            var listItemView = new ListItemView(listItem),
+                li = listItemView.makeItem();
 
-            ul.appendChild(li);
+            domList.appendChild(li);
         });
-
-        container.appendChild(ul);
     };
 
     return this;

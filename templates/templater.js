@@ -6,7 +6,7 @@ function templater (template, json) {
 
     for (key in json) {
         toReplace = ':' + key;
-        html = html.replace(toReplace, json[key]);
+        html = html.split(toReplace).join(json[key]);
     }
 
     return html;
