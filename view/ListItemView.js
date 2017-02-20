@@ -1,7 +1,9 @@
 'use strict';
 
 function ListItemView (_student) {
-    var student = _student;
+    var student = _student,
+        infoView,
+        domItem;
 
     this.makeItem = function () {
         var item = document.createElement('li'),
@@ -12,24 +14,23 @@ function ListItemView (_student) {
         item.innerHTML = html;
         item.className += 'data-row';
 
-        buttonView = item.getElementsByClassName('details-button')[0];
-        buttonEdit = item.getElementsByClassName('edit-button')[0];
+        buttonView = item.querySelector('.details-button');
+        buttonEdit = item.querySelector('.edit-button');
 
         buttonView.addEventListener('click', showInfo, false);
         buttonEdit.addEventListener('click', showEdit, false);
 
+        domItem = item;
+        infoView = new InfoView(student, domItem);
+
         return item;
-    }
+    };
 
     function showInfo () {
-        var infoView = new InfoView(student);
-
         infoView.showInfoBox();
     }
 
     function showEdit () {
-        var editView = new EditView(student);
-
-        editView.showEditBox();
+        infoView.showEditBox(domItem);
     }
 }

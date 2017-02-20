@@ -8,9 +8,9 @@ function ListView (studentList) {
             domList;    
 
         container.innerHTML = listViewTpl;
-        domList = container.getElementsByTagName('ul')[0];
+        domList = container.querySelector('ul');
 
-        students.forEach(function(listItem) {
+        students.forEach(function (listItem) {
             var listItemView = new ListItemView(listItem),
                 li = listItemView.makeItem();
 

@@ -5,7 +5,6 @@ function StudentList () {
 
     this.addStudent = function (student) {
         studentList.push(student);
-        student.setListLink(studentList);
     };
 
     this.forEach = function (fn) {
