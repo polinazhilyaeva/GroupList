@@ -19,12 +19,14 @@ function ListItemView (_student) {
         buttonView.addEventListener('click', showInfo, false);
         buttonEdit.addEventListener('click', showEdit, false);
 
-        infoView = new InfoView(student, this);
+        infoView = new InfoView(student);
+
+        student.on('change', changeInfo);
 
         return item;
     };
 
-    this.changeInfo = function () {
+    function changeInfo () {
         var json = student.toJSON(),
             html = templater(listItemViewTpl, json),
             buttonView, buttonEdit;

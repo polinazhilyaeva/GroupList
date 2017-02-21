@@ -1,10 +1,9 @@
 'use strict';
 
-function InfoView (_listItem, _listItemView) {
+function InfoView (_listItem) {
     var detailsContainer = document.getElementById('details'),
         listItem = _listItem,
-        json = listItem.toJSON(),
-        listItemView = _listItemView;
+        json = listItem.toJSON();
 
     this.showInfoBox = showInfo;
  
@@ -47,9 +46,7 @@ function InfoView (_listItem, _listItemView) {
                 listItem.set(inputField.name, inputField.value);
             }            
         });
-
-        listItemView.changeInfo();
-
+        
         showInfo();
     }
 

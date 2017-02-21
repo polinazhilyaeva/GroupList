@@ -9,6 +9,9 @@ function Student (_name, _lastName, _gender, _skype, _birthday, _email, _phone) 
             age: _birthday,
             email: _email,
             phone: _phone
+        },
+        listeners = {
+            change: []
         };
 
     this.toJSON = function () {
@@ -24,12 +27,28 @@ function Student (_name, _lastName, _gender, _skype, _birthday, _email, _phone) 
     	return json;
     };
 
+    this.on = function (eventName, callback) {
+        if (!listeners.hasOwnProperty(eventName)) {
+            listeners[eventName] = [];
+        }       
+        listeners[eventName].push(callback);
+    };
+
+    this.triggerEvent = function(eventName) {
+        if (listeners.hasOwnProperty(eventName)) {                
+            listeners[eventName].forEach(function (callback) {
+                callback();
+            });         
+        }                           
+    };
+
     this.get = function (key) {
         return values[key];
     };
 
     this.set = function (key, value) {
         values[key] = value;
+        this.triggerEvent('change');
     };
 
     function getAge (birthDate) {
