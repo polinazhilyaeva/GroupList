@@ -1,14 +1,14 @@
 'use strict';
 
-function InfoView (_listItem, _domItem) {
+function InfoView (_listItem, _listItemView) {
     var detailsContainer = document.getElementById('details'),
         listItem = _listItem,
         json = listItem.toJSON(),
-        domItem = _domItem;
+        listItemView = _listItemView;
 
     this.showInfoBox = showInfo;
  
-    this.showEditBox = function (_domItem) {
+    this.showEditBox = function () {
         var json = listItem.toJSON(),
             html = templater(editViewTpl, json),
             closeButton, saveButton;
@@ -38,18 +38,17 @@ function InfoView (_listItem, _domItem) {
     }
 
     function saveInfo () {
-        var inputFields, 
-            field;
+        var inputFields;
 
         inputFields = detailsContainer.querySelectorAll('input[type="text"]');
 
         inputFields.forEach(function(inputField) {
             if (inputField.value !== '') {
                 listItem.set(inputField.name, inputField.value);
-                field = domItem.querySelector('span.' + inputField.name);
-                field.innerHTML = inputField.value;
             }            
         });
+
+        listItemView.changeInfo();
 
         showInfo();
     }
