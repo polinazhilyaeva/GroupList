@@ -34,21 +34,13 @@ function Student (_name, _lastName, _gender, _skype, _birthday, _email, _phone) 
         listeners[eventName].push(callback);
     };
 
-    this.triggerEvent = function(eventName) {
-        if (listeners.hasOwnProperty(eventName)) {                
-            listeners[eventName].forEach(function (callback) {
-                callback();
-            });         
-        }                           
-    };
-
     this.get = function (key) {
         return values[key];
     };
 
     this.set = function (key, value) {
         values[key] = value;
-        this.triggerEvent('change');
+        triggerEvent('change');
     };
 
     function getAge (birthDate) {
@@ -66,6 +58,14 @@ function Student (_name, _lastName, _gender, _skype, _birthday, _email, _phone) 
 
         return age;
     }
+
+    function triggerEvent (eventName) {
+        if (listeners.hasOwnProperty(eventName)) {                
+            listeners[eventName].forEach(function (callback) {
+                callback();
+            });         
+        }                           
+    };
 
     return this;
 }

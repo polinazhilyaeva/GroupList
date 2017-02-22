@@ -3,47 +3,41 @@
 function ListItemView (_student) {
     var item = document.createElement('li'),
         student = _student,
+        buttonView, buttonEdit,
         infoView;
 
     this.makeItem = function () {
-        var json = student.toJSON(),
-            html = templater(listItemViewTpl, json),
-            buttonView, buttonEdit;
-
-        item.innerHTML = html;
-        item.className += 'data-row';
-
-        buttonView = item.querySelector('.details-button');
-        buttonEdit = item.querySelector('.edit-button');
-
-        buttonView.addEventListener('click', showInfo, false);
-        buttonEdit.addEventListener('click', showEdit, false);
+        render();
 
         infoView = new InfoView(student);
-
         student.on('change', changeInfo);
 
         return item;
     };
 
-    function changeInfo () {
+    function render () {
         var json = student.toJSON(),
-            html = templater(listItemViewTpl, json),
-            buttonView, buttonEdit;
-
-        buttonView = item.querySelector('.details-button');
-        buttonEdit = item.querySelector('.edit-button');
-
-        buttonView.removeEventListener('click', showInfo);
-        buttonEdit.removeEventListener('click', showEdit);
+            html = templater(listItemViewTpl, json);
 
         item.innerHTML = html;
+        item.classList.add('data-row');
 
-        buttonView = item.querySelector('.details-button');
-        buttonEdit = item.querySelector('.edit-button');
+        findButtons();
 
         buttonView.addEventListener('click', showInfo, false);
         buttonEdit.addEventListener('click', showEdit, false);
+    }    
+
+    function changeInfo () {
+        buttonView.removeEventListener('click', showInfo);
+        buttonEdit.removeEventListener('click', showEdit);
+
+        render();
+    }
+
+    function findButtons () {
+        buttonView = item.querySelector('.details-button');
+        buttonEdit = item.querySelector('.edit-button');
     }
 
     function showInfo () {

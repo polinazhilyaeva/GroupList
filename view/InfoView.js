@@ -1,32 +1,29 @@
 'use strict';
 
-function InfoView (_listItem) {
+function InfoView (_student) {
     var detailsContainer = document.getElementById('details'),
-        listItem = _listItem,
-        json = listItem.toJSON();
+        student = _student,
+        closeButton, saveButton;
 
     this.showInfoBox = showInfo;
  
     this.showEditBox = function () {
-        var json = listItem.toJSON(),
-            html = templater(editViewTpl, json),
-            closeButton, saveButton;
+        var json = student.toJSON(),
+            html = templater(editViewTpl, json);
 
         clearDetails();
 
         detailsContainer.innerHTML = html;
 
-        closeButton = detailsContainer.querySelector('.close-button');
-        saveButton = detailsContainer.querySelector('.save-button');
+        findButtons();
         
         closeButton.addEventListener('click', clearDetails, false);
         saveButton.addEventListener('click', saveInfo, false);
     };
 
     function showInfo () {
-        var json = listItem.toJSON(),
-            html = templater(infoViewTpl, json),
-            closeButton;
+        var json = student.toJSON(),
+            html = templater(infoViewTpl, json);
 
         clearDetails();
 
@@ -36,23 +33,8 @@ function InfoView (_listItem) {
         closeButton.addEventListener('click', clearDetails, false);
     }
 
-    function saveInfo () {
-        var inputFields;
-
-        inputFields = detailsContainer.querySelectorAll('input[type="text"]');
-
-        inputFields.forEach(function(inputField) {
-            if (inputField.value !== '') {
-                listItem.set(inputField.name, inputField.value);
-            }            
-        });
-        
-        showInfo();
-    }
-
     function clearDetails () {
-        var closeButton = detailsContainer.querySelector('.close-button'),
-            saveButton = detailsContainer.querySelector('.save-button');
+        findButtons();
 
         if (closeButton) {
             closeButton.removeEventListener('click', clearDetails);
@@ -63,5 +45,24 @@ function InfoView (_listItem) {
         }
 
         detailsContainer.innerHTML = '';
+    }
+
+    function findButtons () {
+        closeButton = detailsContainer.querySelector('.close-button'),
+        saveButton = detailsContainer.querySelector('.save-button');
+    }
+
+    function saveInfo () {
+        var inputFields;
+
+        inputFields = detailsContainer.querySelectorAll('input[type="text"]');
+
+        inputFields.forEach(function(inputField) {
+            if (inputField.value !== '') {
+                student.set(inputField.name, inputField.value);
+            }            
+        });
+        
+        showInfo();
     }
 }
