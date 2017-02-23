@@ -1,16 +1,16 @@
 'use strict';
 
-function ListItemView (_student) {
+function ListItemView (_student, _infoView) {
     var item = document.createElement('li'),
         student = _student,
         buttonView, buttonEdit,
-        infoView;
+        infoView = _infoView;
 
     this.makeItem = function () {
         render();
 
-        infoView = new InfoView(student);
         student.on('change', changeInfo);
+        student.on('change', showInfo);
 
         return item;
     };
@@ -41,10 +41,10 @@ function ListItemView (_student) {
     }
 
     function showInfo () {
-        infoView.showInfoBox();
+        infoView.showInfoBox(student);
     }
 
     function showEdit () {
-        infoView.showEditBox();
+        infoView.showEditBox(student);
     }
 }

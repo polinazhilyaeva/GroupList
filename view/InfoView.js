@@ -1,27 +1,10 @@
 'use strict';
 
-function InfoView (_student) {
+function InfoView () {
     var detailsContainer = document.getElementById('details'),
-        student = _student,
         closeButton, saveButton;
 
-    this.showInfoBox = showInfo;
- 
-    this.showEditBox = function () {
-        var json = student.toJSON(),
-            html = templater(editViewTpl, json);
-
-        clearDetails();
-
-        detailsContainer.innerHTML = html;
-
-        findButtons();
-        
-        closeButton.addEventListener('click', clearDetails, false);
-        saveButton.addEventListener('click', saveInfo, false);
-    };
-
-    function showInfo () {
+    this.showInfoBox = function (student) {
         var json = student.toJSON(),
             html = templater(infoViewTpl, json);
 
@@ -31,9 +14,24 @@ function InfoView (_student) {
 
         closeButton = detailsContainer.querySelector('.close-button');
         closeButton.addEventListener('click', clearDetails, false);
-    }
+    };
+ 
+    this.showEditBox = function (student) {
+        var json = student.toJSON(),
+            html = templater(editViewTpl, json),
+            saveInfoStudent = saveInfo(student);
 
-    function clearDetails () {
+        clearDetails(saveInfoStudent);
+
+        detailsContainer.innerHTML = html;
+
+        findButtons(); 
+        
+        closeButton.addEventListener('click', clearDetails, false);
+        saveButton.addEventListener('click', saveInfoStudent, false);
+    };
+
+    function clearDetails (saveInfoStudent) {
         findButtons();
 
         if (closeButton) {
@@ -41,7 +39,7 @@ function InfoView (_student) {
         }
 
         if (saveButton) {
-            saveButton.removeEventListener('click', saveInfo);
+            saveButton.removeEventListener('click', saveInfoStudent);
         }
 
         detailsContainer.innerHTML = '';
@@ -52,17 +50,21 @@ function InfoView (_student) {
         saveButton = detailsContainer.querySelector('.save-button');
     }
 
-    function saveInfo () {
-        var inputFields;
 
-        inputFields = detailsContainer.querySelectorAll('input[type="text"]');
+    function saveInfo (student) {
+        return function () {
+            var json = student.toJSON(),
+                inputFields;
 
-        inputFields.forEach(function(inputField) {
-            if (inputField.value !== '') {
-                student.set(inputField.name, inputField.value);
-            }            
-        });
-        
-        showInfo();
+            inputFields = detailsContainer.querySelectorAll('input[type="text"]');
+
+            inputFields.forEach(function(inputField) {
+                if (inputField.value !== '') {
+                    student.set(inputField.name, inputField.value);
+                } else {
+                    student.set(inputField.name, json[inputField.name]);
+                }
+            });
+        };
     }
 }
